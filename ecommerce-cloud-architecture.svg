@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <style>
+      .title{font:700 30px Arial,sans-serif;fill:#172033}
+      .subtitle{font:400 16px Arial,sans-serif;fill:#5d6678}
+      .tier{font:700 18px Arial,sans-serif;fill:#344054}
+      .box-title{font:700 18px Arial,sans-serif;fill:#172033}
+      .box-text{font:400 14px Arial,sans-serif;fill:#475467}
+      .small{font:400 13px Arial,sans-serif;fill:#667085}
+      .why{font:600 13px Arial,sans-serif;fill:#344054}
+      .arrow{stroke:#667085;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .flow{stroke:#98A2B3;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#667085"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#101828" flood-opacity=".12"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#F8FAFC"/>
+  <text x="70" y="65" class="title">Cloud Architecture — Scalable E-Commerce Application</text>
+  <text x="70" y="95" class="subtitle">3-tier design: client → application/server tier → data tier, with caching, object storage and horizontal scaling</text>
+
+  <!-- Tier backgrounds -->
+  <rect x="50" y="135" width="1500" height="170" rx="18" fill="#EEF4FF" stroke="#C7D7FE"/>
+  <rect x="50" y="330" width="1500" height="300" rx="18" fill="#F2FDF6" stroke="#ABEFC6"/>
+  <rect x="50" y="655" width="1500" height="270" rx="18" fill="#FFF7ED" stroke="#FED7AA"/>
+
+  <text x="75" y="165" class="tier">TIER 1 — CLIENT / EDGE</text>
+  <text x="75" y="360" class="tier">TIER 2 — APPLICATION / SERVER</text>
+  <text x="75" y="685" class="tier">TIER 3 — DATA</text>
+
+  <!-- Client -->
+  <g filter="url(#shadow)">
+    <rect x="110" y="195" width="260" height="75" rx="12" fill="white" stroke="#9DB8F8"/>
+    <text x="135" y="225" class="box-title">Web / Mobile Client</text>
+    <text x="135" y="249" class="box-text">Browser, Android / iOS app</text>
+  </g>
+
+  <!-- CDN -->
+  <g filter="url(#shadow)">
+    <rect x="485" y="195" width="260" height="75" rx="12" fill="white" stroke="#9DB8F8"/>
+    <text x="510" y="225" class="box-title">CDN + DNS</text>
+    <text x="510" y="249" class="box-text">Static assets, TLS, edge caching</text>
+  </g>
+
+  <!-- WAF / LB -->
+  <g filter="url(#shadow)">
+    <rect x="860" y="195" width="260" height="75" rx="12" fill="white" stroke="#9DB8F8"/>
+    <text x="885" y="225" class="box-title">Load Balancer + WAF</text>
+    <text x="885" y="249" class="box-text">HTTPS routing, health checks, filtering</text>
+  </g>
+
+  <!-- Client flow -->
+  <path d="M370 232 L485 232" class="arrow"/>
+  <path d="M745 232 L860 232" class="arrow"/>
+
+  <!-- App servers -->
+  <g filter="url(#shadow)">
+    <rect x="120" y="400" width="280" height="100" rx="12" fill="white" stroke="#8BD8AA"/>
+    <text x="145" y="432" class="box-title">App Server A</text>
+    <text x="145" y="456" class="box-text">REST API / business logic</text>
+    <text x="145" y="480" class="small">Stateless • auto-scaled</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="460" y="400" width="280" height="100" rx="12" fill="white" stroke="#8BD8AA"/>
+    <text x="485" y="432" class="box-title">App Server B</text>
+    <text x="485" y="456" class="box-text">REST API / business logic</text>
+    <text x="485" y="480" class="small">Stateless • auto-scaled</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="800" y="400" width="280" height="100" rx="12" fill="white" stroke="#8BD8AA"/>
+    <text x="825" y="432" class="box-title">App Server C</text>
+    <text x="825" y="456" class="box-text">REST API / business logic</text>
+    <text x="825" y="480" class="small">Stateless • auto-scaled</text>
+  </g>
+
+  <!-- LB to servers -->
+  <path d="M990 270 C990 325 940 350 940 400" class="arrow"/>
+  <path d="M990 270 C990 325 600 350 600 400" class="arrow"/>
+  <path d="M990 270 C990 325 260 350 260 400" class="arrow"/>
+
+  <!-- Cache -->
+  <g filter="url(#shadow)">
+    <rect x="1160" y="390" width="320" height="120" rx="12" fill="white" stroke="#8BD8AA"/>
+    <text x="1185" y="422" class="box-title">Redis Cache</text>
+    <text x="1185" y="446" class="box-text">Products, sessions, hot queries</text>
+    <text x="1185" y="470" class="small">Fast reads • reduces DB load</text>
+  </g>
+
+  <!-- Server to cache -->
+  <path d="M1080 450 L1160 450" class="flow"/>
+
+  <!-- Object storage -->
+  <g filter="url(#shadow)">
+    <rect x="1160" y="535" width="320" height="65" rx="12" fill="white" stroke="#8BD8AA"/>
+    <text x="1185" y="562" class="box-title">Object Storage</text>
+    <text x="1185" y="584" class="box-text">Product images, invoices, static files</text>
+  </g>
+  <path d="M1080 500 C1130 510 1140 550 1160 565" class="flow"/>
+
+  <!-- Data tier -->
+  <g filter="url(#shadow)">
+    <rect x="110" y="730" width="400" height="125" rx="12" fill="white" stroke="#F2B880"/>
+    <text x="140" y="762" class="box-title">Managed Relational DB</text>
+    <text x="140" y="787" class="box-text">PostgreSQL / MySQL</text>
+    <text x="140" y="812" class="small">Orders • users • inventory • payments</text>
+    <text x="140" y="835" class="small">Multi-AZ primary + read replica</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="590" y="730" width="350" height="125" rx="12" fill="white" stroke="#F2B880"/>
+    <text x="620" y="762" class="box-title">Read Replica</text>
+    <text x="620" y="787" class="box-text">Scale read-heavy product queries</text>
+    <text x="620" y="812" class="small">Separates reporting / browsing load</text>
+    <text x="620" y="835" class="small">from transactional writes</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1020" y="730" width="430" height="125" rx="12" fill="white" stroke="#F2B880"/>
+    <text x="1050" y="762" class="box-title">Backup + Monitoring</text>
+    <text x="1050" y="787" class="box-text">Automated backups, logs, metrics, alerts</text>
+    <text x="1050" y="812" class="small">Recovery + operational visibility</text>
+    <text x="1050" y="835" class="small">No customer traffic goes here</text>
+  </g>
+
+  <!-- App to DB -->
+  <path d="M260 500 C260 610 310 650 310 730" class="arrow"/>
+  <path d="M600 500 C600 610 790 650 765 730" class="arrow"/>
+  <path d="M940 500 C940 610 400 650 400 730" class="arrow"/>
+
+  <!-- Cache to DB -->
+  <path d="M1320 510 C1320 620 510 650 510 780" class="flow"/>
+
+  <!-- Replica relationship -->
+  <path d="M510 790 L590 790" class="flow"/>
+
+  <!-- Why callouts -->
+  <rect x="90" y="875" width="1420" height="35" rx="9" fill="#FFFFFF" stroke="#D0D5DD"/>
+  <text x="110" y="898" class="why">WHY: CDN cuts latency • Load balancer distributes traffic • stateless servers scale horizontally • Redis avoids repeated DB reads • managed DB protects transactional data • object storage keeps large files out of the DB</text>
+
+  <!-- Scaling labels -->
+  <rect x="117" y="515" width="625" height="42" rx="9" fill="#ECFDF3" stroke="#A6F4C5"/>
+  <text x="138" y="541" class="why">↕ AUTO-SCALING GROUP: add/remove app servers based on CPU or request count</text>
+
+  <rect x="820" y="610" width="630" height="38" rx="9" fill="#FFF7ED" stroke="#FED7AA"/>
+  <text x="840" y="635" class="why">CACHE-ASIDE: app checks Redis → on miss, reads DB → stores result in Redis</text>
+
+  <!-- Legend -->
+  <text x="70" y="960" class="small">Example cloud mapping: Route 53 / CloudFront / ALB / EC2 or ECS / ElastiCache / S3 / RDS. Equivalent services on Azure or GCP can be substituted.</text>
+</svg>
